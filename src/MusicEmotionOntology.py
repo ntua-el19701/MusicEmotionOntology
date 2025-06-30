@@ -928,7 +928,7 @@ with onto:
         triggers = [LowNegativeValence]
 
 
-    onto.save(file="MusicEmotionsOntology.owl", format="rdfxml")
+    #onto.save(file="MusicEmotionsOntology.owl", format="rdfxml")
     
     def create_instances():
         """
