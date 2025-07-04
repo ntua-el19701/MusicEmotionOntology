@@ -5,6 +5,7 @@ from music21 import converter, analysis, tempo, dynamics
 import xml.etree.ElementTree as ET
 from pathlib import Path
 from create_plot import plot_valence_arousal
+import numpy as np
 
 # create a graph and create instances of the relative Ontology classes of the musical features found in the file
 # use these instanes to calculate valence and arousal scores
@@ -457,6 +458,12 @@ def calculate_valence_arousal(track):
         ar_value += calculate_tempo(tempo_class)
         return ar_value, val_value
 
+
+
+def standarize(val, mean, std):
+    """ function to standardize a value """
+    return (val - mean) / std
+
 if __name__ == "__main__":
 
     # create instances for all ontology classes, this is important for reasoning
@@ -628,8 +635,21 @@ if __name__ == "__main__":
                 print(mf)
             print(meter.hasValenceValue, meter.hasArousalValue)
 
+        # standarize the values:
+        valence_arr = np.array(list(avg_val.values()))
+        arousal_arr = np.array(list(avg_ar.values()))
+
+        val_mean, val_std = valence_arr.mean(), valence_arr.std()
+        aro_mean, aro_std = arousal_arr.mean(), arousal_arr.std()
+
+        standarized_valence = []
+        standarized_arousal = []
+        for val in avg_val.values():
+            standarized_valence.append(standarize(val, val_mean, val_std))
+        for ar in avg_ar.values():
+            standarized_arousal.append(standarize(ar, aro_mean, aro_std))
         # plot the valence and arousal values as the meters progress
-        plot_valence_arousal(list(avg_val.values()), list(avg_ar.values()), len(meter_list), title)
+        plot_valence_arousal(standarized_valence, standarized_arousal, len(meter_list), title)
 
 
 
