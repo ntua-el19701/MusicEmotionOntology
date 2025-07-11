@@ -2,8 +2,6 @@ from owlready2 import *
 
 onto = get_ontology("http://www.semanticweb.org/musicEmotionOntology#")
 
-    
-
 
 with onto:
 
@@ -375,6 +373,7 @@ with onto:
         comment = "Class to link the interval count to the specific interval"
         domain = [IntervalCount]
         range = [Intervals]
+        is_a = [hasMusicalFeature]
 
     class hasIntervalsRatio(Intervals >> str, FunctionalProperty):
         comment = "Data Property for the ratio of intervals"
@@ -946,6 +945,8 @@ with onto:
                 instances_by_class[cls] = instance 
     
         return instances_by_class
+    
+    onto.save("MusicEmotionsOntology.owl", 'rdfxml')
     create_instances()
 
 

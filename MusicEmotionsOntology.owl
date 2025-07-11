@@ -1,0 +1,2204 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://www.semanticweb.org/musicEmotionOntology"
+         xmlns="http://www.semanticweb.org/musicEmotionOntology#">
+
+<owl:Ontology rdf:about="http://www.semanticweb.org/musicEmotionOntology"/>
+
+<owl:ObjectProperty rdf:about="#hasMusicalFeature">
+  <rdfs:domain rdf:resource="#Track"/>
+  <rdfs:range rdf:resource="#MusicalFeature"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class connecting a track to their musical features</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#triggers">
+  <rdfs:domain rdf:resource="#MusicalFeature"/>
+  <rdfs:range rdf:resource="#EmotionalEffect"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class that defines the relationship between a musical feature and the emotions it triggers</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#meterHasTrack">
+  <rdfs:domain rdf:resource="#Meter"/>
+  <rdfs:range rdf:resource="#Track"/>
+  <owl:inverseOf rdf:resource="#trackHasMeter"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class that defines the relationship between meter and Track</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#trackHasMeter">
+  <rdfs:domain rdf:resource="#Track"/>
+  <rdfs:range rdf:resource="#Meter"/>
+  <owl:inverseOf rdf:resource="#meterHasTrack"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasNext">
+  <rdfs:domain rdf:resource="#Meter"/>
+  <rdfs:range rdf:resource="#Meter"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class that defines which meter is the next one of this meter</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#isFollowedByMeter">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  <rdfs:domain rdf:resource="#Meter"/>
+  <rdfs:range rdf:resource="#Meter"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasNextMeter">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:subPropertyOf rdf:resource="#isFollowedByMeter"/>
+  <rdfs:domain rdf:resource="#Meter"/>
+  <rdfs:range rdf:resource="#Meter"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#followsMeter">
+  <rdfs:domain rdf:resource="#Meter"/>
+  <rdfs:range rdf:resource="#Meter"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class that defines which meter is the previous of this meter</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasTempo">
+  <rdfs:subPropertyOf rdf:resource="#hasMusicalFeature"/>
+  <rdfs:domain rdf:resource="#Track"/>
+  <rdfs:range rdf:resource="#Tempo"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class the defined the tempo of a track</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasRhythmChange">
+  <rdfs:subPropertyOf rdf:resource="#hasMusicalFeature"/>
+  <rdfs:domain rdf:resource="#Track"/>
+  <rdfs:range rdf:resource="#RhythmChange"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class that represents the rhythm change of a Track/meter</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasNotes">
+  <rdfs:subPropertyOf rdf:resource="#hasMusicalFeature"/>
+  <rdfs:domain rdf:resource="#Track"/>
+  <rdfs:range rdf:resource="#Notes"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing the notes of a track/meter</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasMelodyRange">
+  <rdfs:subPropertyOf rdf:resource="#hasMusicalFeature"/>
+  <rdfs:domain rdf:resource="#Track"/>
+  <rdfs:range rdf:resource="#MelodyRange"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class tha represents the melody range of a Track/meter</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasMelodyDirection">
+  <rdfs:subPropertyOf rdf:resource="#hasMusicalFeature"/>
+  <rdfs:domain rdf:resource="#Track"/>
+  <rdfs:range rdf:resource="#MelodyDirection"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class tha represents the melody direction of a Track/meter</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasInterval">
+  <rdfs:subPropertyOf rdf:resource="#hasMusicalFeature"/>
+  <rdfs:domain rdf:resource="#IntervalCount"/>
+  <rdfs:range rdf:resource="#Intervals"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class to link the interval count to the specific interval</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasMelodyCadence">
+  <rdfs:subPropertyOf rdf:resource="#hasMusicalFeature"/>
+  <rdfs:domain rdf:resource="#Track"/>
+  <rdfs:range rdf:resource="#MelodyCadence"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class tha represents the melody cadence of a Track/meter</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasArticulation">
+  <rdfs:subPropertyOf rdf:resource="#hasMusicalFeature"/>
+  <rdfs:domain rdf:resource="#Track"/>
+  <rdfs:range rdf:resource="#Articulation"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class tha represents the articulation of a Track/meter</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasDynamicShape">
+  <rdfs:subPropertyOf rdf:resource="#hasMusicalFeature"/>
+  <rdfs:domain rdf:resource="#Track"/>
+  <rdfs:range rdf:resource="#DynamicShape"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing the dynamic shape of a track/meter</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasDynamics">
+  <rdfs:subPropertyOf rdf:resource="#hasMusicalFeature"/>
+  <rdfs:domain rdf:resource="#Track"/>
+  <rdfs:range rdf:resource="#Dynamics"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing the dynamics of a track/meter</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasDirectInstructions">
+  <rdfs:subPropertyOf rdf:resource="#hasMusicalFeature"/>
+  <rdfs:domain rdf:resource="#Track"/>
+  <rdfs:range rdf:resource="#DirectInstructions"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing the direct instruction of a track</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasAveragePitch">
+  <rdfs:subPropertyOf rdf:resource="#hasMusicalFeature"/>
+  <rdfs:domain rdf:resource="#Track"/>
+  <rdfs:range rdf:resource="#Pitch"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class tha represents the overall pitch of a Track/meter</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasPitchRange">
+  <rdfs:subPropertyOf rdf:resource="#hasMusicalFeature"/>
+  <rdfs:domain rdf:resource="#Track"/>
+  <rdfs:range rdf:resource="#PitchRange"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class tha represents the overall pitch Range of a Track/meter</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasTimbre">
+  <rdfs:subPropertyOf rdf:resource="#hasMusicalFeature"/>
+  <rdfs:domain rdf:resource="#Track"/>
+  <rdfs:range rdf:resource="#Timbre"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class tha represents the overall timbre of a Track/meter</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasMode">
+  <rdfs:subPropertyOf rdf:resource="#hasMusicalFeature"/>
+  <rdfs:domain rdf:resource="#Track"/>
+  <rdfs:range rdf:resource="#Mode"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class that defines the mode of a track</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:about="#trackHasAverageValence">
+  <rdfs:domain rdf:resource="#Track"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class that defines the overall valence of the track</rdfs:comment>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#trackHasAverageArousal">
+  <rdfs:domain rdf:resource="#Track"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class that defines the overall arousal of the track</rdfs:comment>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#meterHasPosition">
+  <rdfs:domain rdf:resource="#Meter"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasValenceValue">
+  <rdfs:domain rdf:resource="#Meter"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class that defines a decimal number representing the valence value of the meter</rdfs:comment>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasArousalValue">
+  <rdfs:domain rdf:resource="#Meter"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class that defines a decimal number representing the arousal value of the meter</rdfs:comment>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasBPM">
+  <rdfs:domain rdf:resource="#Tempo"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasIntervalCount">
+  <rdfs:domain rdf:resource="#IntervalCount"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class to count intervals</rdfs:comment>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasIntervalsRatio">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Intervals"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Data Property for the ratio of intervals</rdfs:comment>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasDuration">
+  <rdfs:domain rdf:resource="#Intervals"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An integer represeting the duration of the interval - the note with the biggest duration</rdfs:comment>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:about="#Track">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing a musical track</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Meter">
+  <rdfs:subClassOf rdf:resource="#Track"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing a meter in a track</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MusicalFeature">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing a musical feature</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#EmotionalEffect">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class that represents an emotional effect</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Arousal">
+  <rdfs:subClassOf rdf:resource="#EmotionalEffect"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing arousal effect</rdfs:comment>
+  <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Arousal</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#Valence">
+  <rdfs:subClassOf rdf:resource="#EmotionalEffect"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class that represents valence effect</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#LowArousal">
+  <rdfs:subClassOf rdf:resource="#Arousal"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Low Arousal</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#VeryLowArousal">
+  <rdfs:subClassOf rdf:resource="#Arousal"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Very Low Arousal</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MediumArousal">
+  <rdfs:subClassOf rdf:resource="#Arousal"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Medium Arousal</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#HighArousal">
+  <rdfs:subClassOf rdf:resource="#Arousal"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing High Arousal</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#VeryHighArousal">
+  <rdfs:subClassOf rdf:resource="#Arousal"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Very High Arousal</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#PositiveValence">
+  <rdfs:subClassOf rdf:resource="#Valence"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing emotions with positive Valence, e.g happiness</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MediumPositiveValence">
+  <rdfs:subClassOf rdf:resource="#PositiveValence"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing emotions with Medium positive Valence</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#VeryPositiveValence">
+  <rdfs:subClassOf rdf:resource="#PositiveValence"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Emotions with very positive valence</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#NegativeValence">
+  <rdfs:subClassOf rdf:resource="#Valence"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing emotions with negative Valence</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#LowNegativeValence">
+  <rdfs:subClassOf rdf:resource="#NegativeValence"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing emotions with Low negative valence ()</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#VeryNegativeValence">
+  <rdfs:subClassOf rdf:resource="#NegativeValence"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing emotions with Very negative valence ()</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#VeryPositiveValenceMeter">
+  <rdfs:subClassOf rdf:resource="#Meter"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Meter"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#hasValenceValue"/>
+          <owl:someValuesFrom>
+            <rdfs:Datatype>
+              <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+              <owl:withRestrictions>
+                <rdf:Description>
+                  <rdf:first>
+                    <rdf:Description>
+                      <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3.9</xsd:minInclusive>
+                    </rdf:Description>
+                  </rdf:first>
+                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                </rdf:Description>
+              </owl:withRestrictions>
+            </rdfs:Datatype>
+          </owl:someValuesFrom>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing meters with very positive valence</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#LowPositiveValenceMeter">
+  <rdfs:subClassOf rdf:resource="#Meter"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Meter"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#hasValenceValue"/>
+          <owl:someValuesFrom>
+            <rdfs:Datatype>
+              <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+              <owl:withRestrictions>
+                <rdf:Description>
+                  <rdf:first>
+                    <rdf:Description>
+                      <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.25</xsd:minInclusive>
+                    </rdf:Description>
+                  </rdf:first>
+                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                </rdf:Description>
+              </owl:withRestrictions>
+            </rdfs:Datatype>
+          </owl:someValuesFrom>
+        </owl:Restriction>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#hasValenceValue"/>
+          <owl:someValuesFrom>
+            <rdfs:Datatype>
+              <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+              <owl:withRestrictions>
+                <rdf:Description>
+                  <rdf:first>
+                    <rdf:Description>
+                      <xsd:maxExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3.9</xsd:maxExclusive>
+                    </rdf:Description>
+                  </rdf:first>
+                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                </rdf:Description>
+              </owl:withRestrictions>
+            </rdfs:Datatype>
+          </owl:someValuesFrom>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing meters with low positive valence</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#LowNegativeValenceMeter">
+  <rdfs:subClassOf rdf:resource="#Meter"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Meter"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#hasValenceValue"/>
+          <owl:someValuesFrom>
+            <rdfs:Datatype>
+              <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+              <owl:withRestrictions>
+                <rdf:Description>
+                  <rdf:first>
+                    <rdf:Description>
+                      <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-3.9</xsd:minInclusive>
+                    </rdf:Description>
+                  </rdf:first>
+                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                </rdf:Description>
+              </owl:withRestrictions>
+            </rdfs:Datatype>
+          </owl:someValuesFrom>
+        </owl:Restriction>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#hasValenceValue"/>
+          <owl:someValuesFrom>
+            <rdfs:Datatype>
+              <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+              <owl:withRestrictions>
+                <rdf:Description>
+                  <rdf:first>
+                    <rdf:Description>
+                      <xsd:maxExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.24</xsd:maxExclusive>
+                    </rdf:Description>
+                  </rdf:first>
+                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                </rdf:Description>
+              </owl:withRestrictions>
+            </rdfs:Datatype>
+          </owl:someValuesFrom>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing meters with low positive valence</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#VeryNegativeValenceMeter">
+  <rdfs:subClassOf rdf:resource="#Meter"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Meter"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#hasValenceValue"/>
+          <owl:someValuesFrom>
+            <rdfs:Datatype>
+              <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+              <owl:withRestrictions>
+                <rdf:Description>
+                  <rdf:first>
+                    <rdf:Description>
+                      <xsd:maxExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-3.9</xsd:maxExclusive>
+                    </rdf:Description>
+                  </rdf:first>
+                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                </rdf:Description>
+              </owl:withRestrictions>
+            </rdfs:Datatype>
+          </owl:someValuesFrom>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing meters with low positive valence</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#VeryHighArousalMeter">
+  <rdfs:subClassOf rdf:resource="#Meter"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Meter"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#hasArousalValue"/>
+          <owl:someValuesFrom>
+            <rdfs:Datatype>
+              <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+              <owl:withRestrictions>
+                <rdf:Description>
+                  <rdf:first>
+                    <rdf:Description>
+                      <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</xsd:minInclusive>
+                    </rdf:Description>
+                  </rdf:first>
+                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                </rdf:Description>
+              </owl:withRestrictions>
+            </rdfs:Datatype>
+          </owl:someValuesFrom>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing meters with very high arousal</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MediumHighArousalMeter">
+  <rdfs:subClassOf rdf:resource="#Meter"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Meter"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#hasArousalValue"/>
+          <owl:someValuesFrom>
+            <rdfs:Datatype>
+              <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+              <owl:withRestrictions>
+                <rdf:Description>
+                  <rdf:first>
+                    <rdf:Description>
+                      <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.4</xsd:minInclusive>
+                    </rdf:Description>
+                  </rdf:first>
+                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                </rdf:Description>
+              </owl:withRestrictions>
+            </rdfs:Datatype>
+          </owl:someValuesFrom>
+        </owl:Restriction>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#hasArousalValue"/>
+          <owl:someValuesFrom>
+            <rdfs:Datatype>
+              <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+              <owl:withRestrictions>
+                <rdf:Description>
+                  <rdf:first>
+                    <rdf:Description>
+                      <xsd:maxExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</xsd:maxExclusive>
+                    </rdf:Description>
+                  </rdf:first>
+                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                </rdf:Description>
+              </owl:withRestrictions>
+            </rdfs:Datatype>
+          </owl:someValuesFrom>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing meters with medium to high arousal</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MediumLowArousalMeter">
+  <rdfs:subClassOf rdf:resource="#Meter"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Meter"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#hasArousalValue"/>
+          <owl:someValuesFrom>
+            <rdfs:Datatype>
+              <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+              <owl:withRestrictions>
+                <rdf:Description>
+                  <rdf:first>
+                    <rdf:Description>
+                      <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-4.5</xsd:minInclusive>
+                    </rdf:Description>
+                  </rdf:first>
+                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                </rdf:Description>
+              </owl:withRestrictions>
+            </rdfs:Datatype>
+          </owl:someValuesFrom>
+        </owl:Restriction>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#hasArousalValue"/>
+          <owl:someValuesFrom>
+            <rdfs:Datatype>
+              <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+              <owl:withRestrictions>
+                <rdf:Description>
+                  <rdf:first>
+                    <rdf:Description>
+                      <xsd:maxExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.4</xsd:maxExclusive>
+                    </rdf:Description>
+                  </rdf:first>
+                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                </rdf:Description>
+              </owl:withRestrictions>
+            </rdfs:Datatype>
+          </owl:someValuesFrom>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing meters with medium to low arousal</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#VeryLowArousalMeter">
+  <rdfs:subClassOf rdf:resource="#Meter"/>
+  <owl:equivalentClass>
+    <owl:Class>
+      <owl:intersectionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Meter"/>
+        <owl:Restriction>
+          <owl:onProperty rdf:resource="#hasArousalValue"/>
+          <owl:someValuesFrom>
+            <rdfs:Datatype>
+              <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+              <owl:withRestrictions>
+                <rdf:Description>
+                  <rdf:first>
+                    <rdf:Description>
+                      <xsd:maxExclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-4.5</xsd:maxExclusive>
+                    </rdf:Description>
+                  </rdf:first>
+                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                </rdf:Description>
+              </owl:withRestrictions>
+            </rdfs:Datatype>
+          </owl:someValuesFrom>
+        </owl:Restriction>
+      </owl:intersectionOf>
+    </owl:Class>
+  </owl:equivalentClass>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing meters with very low arousal</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Rhythm">
+  <rdfs:subClassOf rdf:resource="#MusicalFeature"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing rhythm in music.</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Tempo">
+  <rdfs:subClassOf rdf:resource="#Rhythm"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing the tempo in music.</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#SlowTempo">
+  <rdfs:subClassOf rdf:resource="#Tempo"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing slow tempos in music.</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MediumTempo">
+  <rdfs:subClassOf rdf:resource="#Tempo"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing medium tempos in music.</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#FastTempo">
+  <rdfs:subClassOf rdf:resource="#Tempo"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing fast tempos in music.</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Grave">
+  <rdfs:subClassOf rdf:resource="#SlowTempo"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryLowArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Grave tempo (20-40).</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#LargoTempo">
+  <rdfs:subClassOf rdf:resource="#SlowTempo"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryLowArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Largo tempo (40-66).</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Adagio">
+  <rdfs:subClassOf rdf:resource="#SlowTempo"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Adagio tempo (44-68).</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Andante">
+  <rdfs:subClassOf rdf:resource="#SlowTempo"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Andante tempo (56-108).</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Moderato">
+  <rdfs:subClassOf rdf:resource="#MediumTempo"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Moderato tempo (108-120).</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Allegretto">
+  <rdfs:subClassOf rdf:resource="#MediumTempo"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Allegretto tempo (112-120).</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#AllegroModerato">
+  <rdfs:subClassOf rdf:resource="#MediumTempo"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Allegro Moderato tempo (116-120).</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#AllegroTempo">
+  <rdfs:subClassOf rdf:resource="#FastTempo"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#HighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Allegro tempo (120-156).</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Vivace">
+  <rdfs:subClassOf rdf:resource="#FastTempo"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#HighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Vivace tempo (156-176).</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#PrestoTempo">
+  <rdfs:subClassOf rdf:resource="#FastTempo"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryHighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Presto tempo (168-200).</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Prestissimo">
+  <rdfs:subClassOf rdf:resource="#FastTempo"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryHighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Prestissimo tempo (&gt;200).</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#RhythmChange">
+  <rdfs:subClassOf rdf:resource="#Rhythm"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing Rhythmic Changes.</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Accelerando">
+  <rdfs:subClassOf rdf:resource="#RhythmChange"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumPositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryHighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Accelerando, which means gradually increase tempo</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Ritenuto">
+  <rdfs:subClassOf rdf:resource="#RhythmChange"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryLowArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#NegativeValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Ritenuto, which means immediately and temporarily slow down the tempo</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Ritardando">
+  <rdfs:subClassOf rdf:resource="#RhythmChange"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#NegativeValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Ritardando, which means gradually decrease tempo</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Melody">
+  <rdfs:subClassOf rdf:resource="#MusicalFeature"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing Melody</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Notes">
+  <rdfs:subClassOf rdf:resource="#Melody"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing the notes in a melody</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MelodyRange">
+  <rdfs:subClassOf rdf:resource="#Melody"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing Melody Range</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#WideMelodyRange">
+  <rdfs:subClassOf rdf:resource="#MelodyRange"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#HighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Wide Melody Range</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#NarrowMelodyRange">
+  <rdfs:subClassOf rdf:resource="#MelodyRange"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Narrow Melody Range</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MelodyDirection">
+  <rdfs:subClassOf rdf:resource="#Melody"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing Melody Direction</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#AscendingMelody">
+  <rdfs:subClassOf rdf:resource="#MelodyDirection"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryHighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Ascending Melody</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#DescendingMelody">
+  <rdfs:subClassOf rdf:resource="#MelodyDirection"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Descending Melody</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#UndulatingMelody">
+  <rdfs:subClassOf rdf:resource="#MelodyDirection"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Undulating Melody</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Intervals">
+  <rdfs:subClassOf rdf:resource="#Melody"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing the intervals in a Melody</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#IntervalCount">
+  <rdfs:subClassOf rdf:resource="#Intervals"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing the number of times an interval is found in a meter</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#ConsonantIntervals">
+  <rdfs:subClassOf rdf:resource="#Intervals"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing Consonant Intervals</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#UnisonInterval">
+  <rdfs:subClassOf rdf:resource="#ConsonantIntervals"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#hasIntervalsRatio"/>
+      <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1:1</owl:hasValue>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#PositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing the Unison Interval</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#OctaveInterval">
+  <rdfs:subClassOf rdf:resource="#ConsonantIntervals"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#hasIntervalsRatio"/>
+      <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2:1</owl:hasValue>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#PositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing the Octave Interval</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#PerfectFifthInterval">
+  <rdfs:subClassOf rdf:resource="#ConsonantIntervals"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#hasIntervalsRatio"/>
+      <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3:2</owl:hasValue>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryPositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing the Perfect 5th Interval</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#PerfectFourthInterval">
+  <rdfs:subClassOf rdf:resource="#ConsonantIntervals"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#hasIntervalsRatio"/>
+      <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">4:3</owl:hasValue>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumPositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing the Perfect 4th Interval</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#IntermediateIntervals">
+  <rdfs:subClassOf rdf:resource="#Intervals"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing Intermediate (Less consonant) Intervals</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MajorThirdInterval">
+  <rdfs:subClassOf rdf:resource="#IntermediateIntervals"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#hasIntervalsRatio"/>
+      <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">5:4</owl:hasValue>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumPositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing the Major 3rd Interval</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MajorSixthInterval">
+  <rdfs:subClassOf rdf:resource="#IntermediateIntervals"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#hasIntervalsRatio"/>
+      <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">5:3</owl:hasValue>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumPositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#HighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing the Major 6th Interval</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MinorThirdInterval">
+  <rdfs:subClassOf rdf:resource="#IntermediateIntervals"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#hasIntervalsRatio"/>
+      <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">6:5</owl:hasValue>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowNegativeValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing the Minor 3rd Interval</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MinorSixthInterval">
+  <rdfs:subClassOf rdf:resource="#IntermediateIntervals"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#hasIntervalsRatio"/>
+      <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8:5</owl:hasValue>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowNegativeValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#HighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing the Minor 6th Interval</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#DissonantIntervals">
+  <rdfs:subClassOf rdf:resource="#Intervals"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing Dissonant Intervals</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#AugmentedFourthInterval">
+  <rdfs:subClassOf rdf:resource="#IntermediateIntervals"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#hasIntervalsRatio"/>
+      <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></owl:hasValue>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowNegativeValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing the Augmented Fourth Interval</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MinorSeventhInterval">
+  <rdfs:subClassOf rdf:resource="#DissonantIntervals"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#hasIntervalsRatio"/>
+      <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">7:4</owl:hasValue>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryNegativeValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#HighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing the Minor 7th Interval</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MajorSecondInterval">
+  <rdfs:subClassOf rdf:resource="#DissonantIntervals"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#hasIntervalsRatio"/>
+      <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">9:8</owl:hasValue>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryNegativeValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing the Major 2nd Interval</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MajorSeventhInterval">
+  <rdfs:subClassOf rdf:resource="#DissonantIntervals"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#hasIntervalsRatio"/>
+      <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15:8</owl:hasValue>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryNegativeValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing the Major 7th Interval</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MinorSecondInterval">
+  <rdfs:subClassOf rdf:resource="#DissonantIntervals"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#hasIntervalsRatio"/>
+      <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16:15</owl:hasValue>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryNegativeValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#HighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing the Minor 2nd Interval</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MelodyRepetition">
+  <rdfs:subClassOf rdf:resource="#Melody"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing repetition in a melody</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MelodyMotion">
+  <rdfs:subClassOf rdf:resource="#Melody"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing Melody motion</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#ConjunctMelody">
+  <rdfs:subClassOf rdf:resource="#MelodyMotion"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryLowArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumPositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing conjunct melody motion</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#DisjunctMelody">
+  <rdfs:subClassOf rdf:resource="#MelodyMotion"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#HighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryHighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing disjunct melody motion</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Phrasing">
+  <rdfs:subClassOf rdf:resource="#Melody"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing phrasing in music</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#PhrasingLength">
+  <rdfs:subClassOf rdf:resource="#Phrasing"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing phrasing length</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#ShortPhrasingLength">
+  <rdfs:subClassOf rdf:resource="#PhrasingLength"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing short phrasing length</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#LongPhrasingLength">
+  <rdfs:subClassOf rdf:resource="#PhrasingLength"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing long phrasing length</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MelodyConsistency">
+  <rdfs:subClassOf rdf:resource="#Phrasing"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing Melody Consistency</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#ConsistentMelody">
+  <rdfs:subClassOf rdf:resource="#MelodyConsistency"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Consistent Melody Phrasing</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#InconsistentMelody">
+  <rdfs:subClassOf rdf:resource="#MelodyConsistency"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Inconsistent Melody Phrasing</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MelodyCadence">
+  <rdfs:subClassOf rdf:resource="#Phrasing"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing Melody Cadence</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#PerfectCadence">
+  <rdfs:subClassOf rdf:resource="#MelodyCadence"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryPositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Perfect Cadence</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#ImperfectCadence">
+  <rdfs:subClassOf rdf:resource="#MelodyCadence"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumPositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#HighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Imperfect Cadence</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#PlagalCadence">
+  <rdfs:subClassOf rdf:resource="#MelodyCadence"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#PositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Plagal Cadence</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#InterruptedCadence">
+  <rdfs:subClassOf rdf:resource="#MelodyCadence"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowNegativeValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Interrupted Cadence</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Articulation">
+  <rdfs:subClassOf rdf:resource="#Phrasing"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing Articulation</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Legato">
+  <rdfs:subClassOf rdf:resource="#Articulation"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryLowArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumPositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Legato: Notes are played smoothly</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Staccato">
+  <rdfs:subClassOf rdf:resource="#Articulation"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#HighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Staccato: Notes are short and detached – tense</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Tenuto">
+  <rdfs:subClassOf rdf:resource="#Articulation"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Tenuto: Emphasizes on the length of the note, played with a sense of weight, stress</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Accent">
+  <rdfs:subClassOf rdf:resource="#Articulation"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#HighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Accent: Play with additional force, intensity</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#DynamicShape">
+  <rdfs:subClassOf rdf:resource="#Phrasing"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing Dynamic Shape: How the volume of the melody moves</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Crescendo">
+  <rdfs:subClassOf rdf:resource="#DynamicShape"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#HighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Crescendo: Volume gradually increases, building intensity</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Diminuendo">
+  <rdfs:subClassOf rdf:resource="#DynamicShape"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Diminuendo: Volume gradually decreases, a sense of release</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Dynamics">
+  <rdfs:subClassOf rdf:resource="#Phrasing"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing Dynamics</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#SoftDynamics">
+  <rdfs:subClassOf rdf:resource="#Dynamics"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing soft dynamics</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#ModerateDynamics">
+  <rdfs:subClassOf rdf:resource="#Dynamics"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing moderate dynamics</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#LoudDynamics">
+  <rdfs:subClassOf rdf:resource="#Dynamics"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing loud dynamics</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Pianissimo">
+  <rdfs:subClassOf rdf:resource="#SoftDynamics"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowNegativeValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumPositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryLowArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Pianissimo: Very softly</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Piano">
+  <rdfs:subClassOf rdf:resource="#SoftDynamics"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumPositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Piano: Softly</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MezzoPiano">
+  <rdfs:subClassOf rdf:resource="#ModerateDynamics"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#HighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Mezzo Piano: Moderately soft</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MezzoForte">
+  <rdfs:subClassOf rdf:resource="#ModerateDynamics"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Mezzo Forte: Moderately loud</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Forte">
+  <rdfs:subClassOf rdf:resource="#LoudDynamics"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#HighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Forte: Loud</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Fortissimo">
+  <rdfs:subClassOf rdf:resource="#LoudDynamics"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryHighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Fortissimo: Very loud</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#DirectInstructions">
+  <rdfs:subClassOf rdf:resource="#Phrasing"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing Direct Instructions</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Scherzando">
+  <rdfs:subClassOf rdf:resource="#DirectInstructions"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#PositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Scherzando: Playful, with a sense of humor</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Sforzando">
+  <rdfs:subClassOf rdf:resource="#DirectInstructions"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#NegativeValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryHighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing Sforzando: play with sudden, strong emphasis</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Vivo">
+  <rdfs:subClassOf rdf:resource="#DirectInstructions"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#PositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#HighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Vivo: Lively</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Largo">
+  <rdfs:subClassOf rdf:resource="#DirectInstructions"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowNegativeValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumPositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryLowArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+
+<owl:Class rdf:about="#AllegroInstruction">
+  <rdfs:subClassOf rdf:resource="#DirectInstructions"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#HighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Allegro: Fast</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#PrestoInstruction">
+  <rdfs:subClassOf rdf:resource="#DirectInstructions"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#HighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Presto: Very Fast</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Tone">
+  <rdfs:subClassOf rdf:resource="#MusicalFeature"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing Tone</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Pitch">
+  <rdfs:subClassOf rdf:resource="#Tone"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Pitch: How high or low a tone is</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#HighPitch">
+  <rdfs:subClassOf rdf:resource="#Pitch"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumPositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#HighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing High Pitch: Associated with happiness, anger, fear</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MediumPitch">
+  <rdfs:subClassOf rdf:resource="#Pitch"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing Medium Pitch: Octaves: 4- 4.5</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#LowPitch">
+  <rdfs:subClassOf rdf:resource="#Pitch"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowNegativeValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Low Pitch: Associated with sadness, tenderness, fear</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#PitchRange">
+  <rdfs:subClassOf rdf:resource="#Tone"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Pitch Range: Narrow, Wide</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#NarrowPitchRange">
+  <rdfs:subClassOf rdf:resource="#PitchRange"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Narrow Pitch Range</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#WidePitchRange">
+  <rdfs:subClassOf rdf:resource="#PitchRange"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryHighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Wide Pitch Range</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Timbre">
+  <rdfs:subClassOf rdf:resource="#Tone"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Timbre: Color/quality of the tone</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#BrightTimbre">
+  <rdfs:subClassOf rdf:resource="#Timbre"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#PositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Bright Timbre: How bright and vibrant the timbre is</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MellowTimbre">
+  <rdfs:subClassOf rdf:resource="#Timbre"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#NegativeValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Mellow Timbre: Warm and smooth</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#HarshTimbre">
+  <rdfs:subClassOf rdf:resource="#Timbre"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#HighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Harsh Timbre: How rough the timbre is</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Mode">
+  <rdfs:subClassOf rdf:resource="#MusicalFeature"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing Mode</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MajorMode">
+  <rdfs:subClassOf rdf:resource="#Mode"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryPositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Major Mode</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MinorMode">
+  <rdfs:subClassOf rdf:resource="#Mode"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryNegativeValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Minor Mode</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Harmony">
+  <rdfs:subClassOf rdf:resource="#MusicalFeature"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing Harmony</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#ChordType">
+  <rdfs:subClassOf rdf:resource="#Harmony"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing Chord Types</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MajorChord">
+  <rdfs:subClassOf rdf:resource="#ChordType"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#PositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#HighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Major Chord: Happiness, Cheerfulness, satisfaction</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MinorChord">
+  <rdfs:subClassOf rdf:resource="#ChordType"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#NegativeValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Minor Chord: Sadness, darkness, depression</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MajorSeventhChord">
+  <rdfs:subClassOf rdf:resource="#ChordType"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#PositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Major Seventh Chord: Romance, softness, jazziness</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MinorSeventhChord">
+  <rdfs:subClassOf rdf:resource="#ChordType"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowNegativeValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Minor Seventh Chord: Mellowness, moodiness, jazziness</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#NinthChord">
+  <rdfs:subClassOf rdf:resource="#ChordType"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumPositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#HighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Ninth Chord: Optimism, Openness</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#DiminishedChord">
+  <rdfs:subClassOf rdf:resource="#ChordType"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#HighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Diminished Chord: Fear, shock, suspense</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#SuspendedFourthChord">
+  <rdfs:subClassOf rdf:resource="#ChordType"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#PositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#HighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Suspended Fourth Chord: Delightful Tension</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#SeventhMinorNinthChord">
+  <rdfs:subClassOf rdf:resource="#ChordType"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#NegativeValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#HighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Seventh Minor Ninth Chord: Creepiness, fear</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#AddedNinthChord">
+  <rdfs:subClassOf rdf:resource="#ChordType"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowNegativeValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Added Ninth Chord: Steeliness, austerity</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#ChordChangeRate">
+  <rdfs:subClassOf rdf:resource="#Harmony"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing Chord Change Rate: How fast chords are changed</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#SlowChordChangeRate">
+  <rdfs:subClassOf rdf:resource="#ChordChangeRate"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryLowArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Chord Change Rate Feeling of stability, relaxation. (Chords change slowly)</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#MediumChordChangeRate">
+  <rdfs:subClassOf rdf:resource="#ChordChangeRate"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Chord Change Rate: Chords change at a regular pace (e.g., 1 per meter)</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#FastChordChangeRate">
+  <rdfs:subClassOf rdf:resource="#ChordChangeRate"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#HighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryHighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Chord Change Rate: Feeling of energy, movement, liveliness. (Fast, maybe 1 per beat)</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#TonalModulation">
+  <rdfs:subClassOf rdf:resource="#Harmony"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Tonal Modulation: Change in tonal center or key</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#ModulationExpectancy">
+  <rdfs:subClassOf rdf:resource="#TonalModulation"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing Modulation Expectancy. The number next to each modulation means movement in the circle of fifths</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#ExpectedTonalModulation">
+  <rdfs:subClassOf rdf:resource="#ModulationExpectancy"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing Expected Tonal Modulations</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#UnexpectedTonalModulation">
+  <rdfs:subClassOf rdf:resource="#ModulationExpectancy"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#HighArousal"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing Unexpected Tonal Modulations</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#AmbiguousTonalModulation">
+  <rdfs:subClassOf rdf:resource="#ModulationExpectancy"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Class representing Ambiguous Tonal Modulations</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#ExpectedMajorToMajor">
+  <rdfs:subClassOf rdf:resource="#ExpectedTonalModulation"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryPositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Expected Major to Major Tonal Modulations</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#ExpectedMajorToMinor">
+  <rdfs:subClassOf rdf:resource="#ExpectedTonalModulation"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumPositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Expected Major to Minor Tonal Modulations</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#ExpectedMinorToMajor">
+  <rdfs:subClassOf rdf:resource="#ExpectedTonalModulation"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumPositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Expected Minor to Major Tonal Modulations</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#ExpectedMinorToMinor">
+  <rdfs:subClassOf rdf:resource="#ExpectedTonalModulation"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowNegativeValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Expected Minor to Minor Tonal Modulations</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#UnexpectedMajorToMajor">
+  <rdfs:subClassOf rdf:resource="#UnexpectedTonalModulation"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumPositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Unexpected Major to Major Tonal Modulations</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#UnexpectedMajorToMinor">
+  <rdfs:subClassOf rdf:resource="#UnexpectedTonalModulation"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowNegativeValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Unexpected Major to Minor Tonal Modulations</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#UnexpectedMinorToMajor">
+  <rdfs:subClassOf rdf:resource="#UnexpectedTonalModulation"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumPositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Unexpected Minor to Major Tonal Modulations</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#UnexpectedMinorToMinor">
+  <rdfs:subClassOf rdf:resource="#UnexpectedTonalModulation"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#VeryNegativeValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Unexpected Minor to Minor Tonal Modulations</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#AmbiguousMajorToMajor">
+  <rdfs:subClassOf rdf:resource="#AmbiguousTonalModulation"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumPositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Ambiguous Major to Major Tonal Modulations</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#AmbiguousMajorToMinor">
+  <rdfs:subClassOf rdf:resource="#AmbiguousTonalModulation"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowNegativeValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Ambiguous Major to Minor Tonal Modulations</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#AmbiguousMinorToMajor">
+  <rdfs:subClassOf rdf:resource="#AmbiguousTonalModulation"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#MediumPositiveValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Ambiguous Minor to Major Tonal Modulations</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#AmbiguousMinorToMinor">
+  <rdfs:subClassOf rdf:resource="#AmbiguousTonalModulation"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#triggers"/>
+      <owl:someValuesFrom rdf:resource="#LowNegativeValence"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subclass representing Ambiguous Minor to Minor Tonal Modulations</rdfs:comment>
+</owl:Class>
+
+
+</rdf:RDF>
