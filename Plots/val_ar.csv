@@ -7,7 +7,6 @@ Aeolian,5,1.219,1.943
 Aeolian,6,-0.499,1.036
 Aeolian,7,1.421,-0.779
 Aeolian,8,0.916,-0.325
-title,meter,valence,arousal
 Dorian,1,0.403,-1.707
 Dorian,2,-0.713,0.033
 Dorian,3,0.031,2.207
@@ -16,7 +15,6 @@ Dorian,5,-0.217,0.033
 Dorian,6,-0.527,-0.402
 Dorian,7,-0.713,0.033
 Dorian,8,-0.713,0.033
-title,meter,valence,arousal
 Frygian,1,0.022,-0.563
 Frygian,2,1.746,-1.463
 Frygian,3,1.092,-1.163
