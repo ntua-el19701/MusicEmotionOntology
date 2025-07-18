@@ -6,6 +6,8 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from create_plot import plot_valence_arousal
 import numpy as np
+import csv
+
 
 # create a graph and create instances of the relative Ontology classes of the musical features found in the file
 # use these instanes to calculate valence and arousal scores
@@ -462,7 +464,7 @@ def calculate_valence_arousal(track):
 
 def standarize(val, mean, std):
     """ function to standardize a value """
-    return (val - mean) / std
+    return round((val - mean) / std, 3)
 
 if __name__ == "__main__":
 
@@ -648,6 +650,15 @@ if __name__ == "__main__":
             standarized_valence.append(standarize(val, val_mean, val_std))
         for ar in avg_ar.values():
             standarized_arousal.append(standarize(ar, aro_mean, aro_std))
+
+        """
+        with open('valence_arousal.csv', 'a', newline='') as fp:
+            writer=csv.writer(fp)
+            writer.writerow(["title", "meter", "valence", "arousal"])
+            for i, (val, arous) in enumerate(zip(standarized_valence, standarized_arousal), start=1):
+                writer.writerow([title, i, val, arous])
+        """      
+        
         # plot the valence and arousal values as the meters progress
         plot_valence_arousal(standarized_valence, standarized_arousal, len(meter_list), title)
 

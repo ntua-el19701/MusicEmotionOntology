@@ -6,8 +6,8 @@ PREFIX meo: <http://www.semanticweb.org/musicEmotionOntology#>
 
 SELECT ?mf (COUNT(?meter) AS ?meterCount)
 WHERE {
-    ?meter a mfonto:VeryPositiveValenceMeter;
-    mfonto:hasMusicalFeature ?mf.
+    ?meter a meo:VeryPositiveValenceMeter;
+    meo:hasMusicalFeature ?mf.
 }
 
 GROUP BY ?mf
