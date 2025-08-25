@@ -616,7 +616,7 @@ with onto:
 
     class Pianissimo(SoftDynamics):
         comment = "Subclass representing Pianissimo: Very softly"
-        triggers = [VeryLowArousal, LowArousal, LowNegativeValence, MediumPositiveValence]
+        triggers = [VeryLowArousal, LowArousal]
 
 
     class Piano(SoftDynamics):
@@ -670,7 +670,7 @@ with onto:
 
 
     class Largo(DirectInstructions):
-        triggers = [LowArousal, VeryLowArousal, LowNegativeValence, MediumPositiveValence]
+        triggers = [LowArousal, VeryLowArousal]
 
 
     class AllegroInstruction(DirectInstructions):
@@ -743,7 +743,7 @@ with onto:
 
     class MellowTimbre(Timbre):
         comment = "Subclass representing Mellow Timbre: Warm and smooth"
-        triggers = [MediumArousal, LowArousal, NegativeValence]
+        triggers = [LowArousal, NegativeValence]
 
 
     class HarshTimbre(Timbre):
@@ -781,27 +781,27 @@ with onto:
 
     class MajorChord(ChordType):
         comment = "Subclass representing Major Chord: Happiness, Cheerfulness, satisfaction"
-        triggers = [PositiveValence, HighArousal, MediumArousal]
+        triggers = [PositiveValence]
 
 
     class MinorChord(ChordType):
         comment = "Subclass representing Minor Chord: Sadness, darkness, depression"
-        triggers = [NegativeValence, MediumArousal, LowArousal]
+        triggers = [NegativeValence]
 
 
     class MajorSeventhChord(ChordType):
         comment = "Subclass representing Major Seventh Chord: Romance, softness, jazziness"
-        triggers = [PositiveValence, MediumArousal]
+        triggers = [PositiveValence, HighArousal]
 
 
     class MinorSeventhChord(ChordType):
         comment = "Subclass representing Minor Seventh Chord: Mellowness, moodiness, jazziness"
-        triggers = [LowNegativeValence, MediumArousal]
+        triggers = [LowNegativeValence, HighArousal]
 
 
     class NinthChord(ChordType):
         comment = "Subclass representing Ninth Chord: Optimism, Openness"
-        triggers = [MediumPositiveValence, MediumArousal, HighArousal]
+        triggers = [MediumPositiveValence, HighArousal]
 
 
     class DiminishedChord(ChordType):
@@ -811,7 +811,7 @@ with onto:
 
     class SuspendedFourthChord(ChordType):
         comment = "Subclass representing Suspended Fourth Chord: Delightful Tension"
-        triggers = [PositiveValence, MediumArousal, HighArousal]
+        triggers = [PositiveValence, HighArousal]
 
 
     class SeventhMinorNinthChord(ChordType):
@@ -946,8 +946,31 @@ with onto:
     
         return instances_by_class
     
+
+    def create_triggers_table():
+        """
+        function that creates a table of musical features and the emotional effects they trigger
+        """
+        import pandas as pd
+
+        data = []
+        for cls in onto.classes():
+            if issubclass(cls, onto.MusicalFeature) and hasattr(cls, 'triggers'):
+                mf_instance = f"{cls.name.lower()}"
+                effects = []
+                for effect in cls.triggers:
+                    effect_instance = f"{effect.name.lower()}"
+                    effects.append(effect_instance)
+                if effects:
+                    data.append((mf_instance, effects))
+
+        df = pd.DataFrame(data, columns=['MusicalFeature', 'EmotionalEffect'])
+        df.to_csv('musical_features_triggers.csv', index=False)
+        return df
+
+
     onto.save("MusicEmotionsOntology.owl", 'rdfxml')
     create_instances()
-
-
+    create_triggers_table()
+    
 
