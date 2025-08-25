@@ -43,15 +43,16 @@ plt.scatter(valence, arousal, color='blue')
 
 # Annotate each point with the composer's name
 for i, composer in enumerate(composers):
-    plt.text(valence[i] + 0.05, arousal[i] + 0.05, composer, fontsize=12)
+    plt.text(valence[i] + 0.05, arousal[i] + 0.05, composer, fontsize=16)
 
 # Set labels and title
-plt.xlabel('Valence')
-plt.ylabel('Arousal')
-plt.title('Average Valence and Arousal values of Composers')
+plt.xlabel('Valence', fontsize=20)
+plt.ylabel('Arousal',  fontsize=20)
+#plt.title('Average Valence and Arousal values of Composers',  fontsize=15)
 
 # Show grid
 plt.grid(True)
 
 # Show the plot
-plt.show()
+#plt.show()
+plt.savefig('SPARQL/Q1/plot11.png')

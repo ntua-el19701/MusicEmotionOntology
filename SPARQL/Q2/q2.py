@@ -36,24 +36,28 @@ def get_mfs_and_counts(file_path):
 
 
 def plotThis(cleaned_mfs, counts, composer):
-    plt.figure(figsize=(15,10))
-    plt.barh(cleaned_mfs, counts, color='red')
+    plt.figure(figsize=(28,20))  # Keeping the larger figure size
+    plt.barh(cleaned_mfs, counts, color='blue')
 
-    # Set labels and title
-    plt.xlabel('Usage Count')
-    plt.ylabel('Musical Features')
-    plt.title('Usage of Musical Features by ' + composer)
+    # Set labels and title with larger font sizes
+    plt.xlabel('Usage Count', fontsize=22)  # Increased font size for x-axis label
+    plt.ylabel('Musical Features', fontsize=22)  # Increased font size for y-axis label
+    #plt.title('Usage of Musical Features by ' + composer, fontsize=24)  # Increased font size for title
+
+    # Increase font size for tick labels
+    plt.tick_params(axis='both', labelsize=20)  # Adjusts size of tick labels on both axes
 
     # Show the plot
-    plt.show()
+    #plt.show()
+    plt.savefig('SPARQL/Q2/plot2_' + composer + '.pdf')  # Save the plot with composer name
 
 # Read data for each composer
-bach_mfs, bach_counts = get_mfs_and_counts('bach_mfs.csv')
-beet_mfs, beet_counts = get_mfs_and_counts('beet_mfs.csv')
-chopin_mfs, chopin_counts = get_mfs_and_counts('chopin_mfs.csv')
-haydn_mfs, haydn_counts = get_mfs_and_counts('haydn_mfs.csv')
+bach_mfs, bach_counts = get_mfs_and_counts('SPARQL/Q2/bach_mfs.csv')
+#beet_mfs, beet_counts = get_mfs_and_counts('beet_mfs.csv')
+#chopin_mfs, chopin_counts = get_mfs_and_counts('SPARQL\Q2\chopin_mfs.csv')
+#haydn_mfs, haydn_counts = get_mfs_and_counts('haydn_mfs.csv')
 
-#plotThis(bach_mfs, bach_counts, 'Bach')
+plotThis(bach_mfs, bach_counts, 'Bach')
 #plotThis(beet_mfs, beet_counts, 'Beethoven')
-#plotThis(chopin_mfs, chopin_counts, 'Chopin')
+#plotThis(chopin_mfs, chopin_counts, 'Bach')
 #plotThis(haydn_mfs, haydn_counts, 'Haydn')
