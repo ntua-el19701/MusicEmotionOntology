@@ -1,0 +1,91 @@
+MusicalFeature,EmotionalEffect
+grave,['verylowarousal']
+largotempo,['verylowarousal']
+adagio,['lowarousal']
+andante,['lowarousal']
+moderato,['lowarousal']
+allegretto,['mediumarousal']
+allegromoderato,['mediumarousal']
+allegrotempo,['higharousal']
+vivace,['higharousal']
+prestotempo,['veryhigharousal']
+prestissimo,['veryhigharousal']
+accelerando,"['mediumpositivevalence', 'veryhigharousal']"
+ritenuto,"['verylowarousal', 'negativevalence']"
+ritardando,"['lowarousal', 'negativevalence']"
+widemelodyrange,['higharousal']
+narrowmelodyrange,['lowarousal']
+ascendingmelody,['veryhigharousal']
+descendingmelody,['lowarousal']
+unisoninterval,"['lowarousal', 'positivevalence']"
+octaveinterval,['positivevalence']
+perfectfifthinterval,['verypositivevalence']
+perfectfourthinterval,['mediumpositivevalence']
+majorthirdinterval,"['mediumarousal', 'mediumpositivevalence']"
+majorsixthinterval,"['higharousal', 'mediumpositivevalence']"
+minorthirdinterval,"['mediumarousal', 'lownegativevalence']"
+minorsixthinterval,"['higharousal', 'lownegativevalence']"
+augmentedfourthinterval,"['mediumarousal', 'lownegativevalence']"
+minorseventhinterval,"['verynegativevalence', 'higharousal']"
+majorsecondinterval,['verynegativevalence']
+majorseventhinterval,"['verynegativevalence', 'mediumarousal']"
+minorsecondinterval,"['verynegativevalence', 'higharousal']"
+conjunctmelody,"['verylowarousal', 'mediumpositivevalence', 'lowarousal']"
+disjunctmelody,"['higharousal', 'veryhigharousal']"
+perfectcadence,['verypositivevalence']
+imperfectcadence,"['mediumarousal', 'higharousal', 'mediumpositivevalence']"
+plagalcadence,"['positivevalence', 'mediumarousal']"
+interruptedcadence,"['mediumarousal', 'lownegativevalence']"
+legato,"['verylowarousal', 'mediumpositivevalence', 'lowarousal']"
+staccato,['higharousal']
+tenuto,['mediumarousal']
+accent,['higharousal']
+crescendo,['higharousal']
+diminuendo,['lowarousal']
+pianissimo,"['verylowarousal', 'lowarousal']"
+piano,"['lowarousal', 'mediumpositivevalence']"
+mezzopiano,"['mediumarousal', 'higharousal']"
+mezzoforte,['mediumarousal']
+forte,['higharousal']
+fortissimo,['veryhigharousal']
+scherzando,"['positivevalence', 'mediumarousal']"
+sforzando,"['negativevalence', 'veryhigharousal']"
+vivo,"['positivevalence', 'higharousal']"
+largo,"['lowarousal', 'verylowarousal']"
+allegroinstruction,['higharousal']
+prestoinstruction,['higharousal']
+highpitch,"['mediumpositivevalence', 'higharousal']"
+mediumpitch,['mediumarousal']
+lowpitch,"['lowarousal', 'lownegativevalence']"
+narrowpitchrange,['lowarousal']
+widepitchrange,['veryhigharousal']
+brighttimbre,['positivevalence']
+mellowtimbre,"['lowarousal', 'negativevalence']"
+harshtimbre,['higharousal']
+majormode,['verypositivevalence']
+minormode,['verynegativevalence']
+majorchord,['positivevalence']
+minorchord,['negativevalence']
+majorseventhchord,"['positivevalence', 'higharousal']"
+minorseventhchord,"['higharousal', 'lownegativevalence']"
+ninthchord,"['higharousal', 'mediumpositivevalence']"
+diminishedchord,['higharousal']
+suspendedfourthchord,"['positivevalence', 'higharousal']"
+seventhminorninthchord,"['negativevalence', 'higharousal']"
+addedninthchord,['lownegativevalence']
+slowchordchangerate,"['lowarousal', 'verylowarousal']"
+mediumchordchangerate,['mediumarousal']
+fastchordchangerate,"['higharousal', 'veryhigharousal']"
+unexpectedtonalmodulation,['higharousal']
+expectedmajortomajor,['verypositivevalence']
+expectedmajortominor,['mediumpositivevalence']
+expectedminortomajor,['mediumpositivevalence']
+expectedminortominor,['lownegativevalence']
+unexpectedmajortomajor,['mediumpositivevalence']
+unexpectedmajortominor,['lownegativevalence']
+unexpectedminortomajor,['mediumpositivevalence']
+unexpectedminortominor,['verynegativevalence']
+ambiguousmajortomajor,['mediumpositivevalence']
+ambiguousmajortominor,['lownegativevalence']
+ambiguousminortomajor,['mediumpositivevalence']
+ambiguousminortominor,['lownegativevalence']
