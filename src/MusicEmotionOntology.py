@@ -1,6 +1,7 @@
 from owlready2 import *
 
 onto = get_ontology("http://www.semanticweb.org/musicEmotionOntology#")
+mto = onto.get_namespace("http://purl.org/ontology/mto/")
 
 
 with onto:
@@ -8,10 +9,12 @@ with onto:
     class Track(Thing):
         comment = "Class representing a musical track"
 
+    class Bar(Thing):
+        namespace = mto
 
     class Meter(Track):
+        equivalent_to = [Bar]
         comment = "Class representing a meter in a track"
-
 
     class MusicalFeature(Thing):
         comment = "Class representing a musical feature"
@@ -305,11 +308,12 @@ with onto:
 
 
     # NOTES
-    class Notes(Melody):
+    class Note(Melody):
+        namespace = mto
         comment = "Class representing the notes in a melody"
 
     # object property for notes
-    class hasNotes(Track >> Notes):
+    class hasNotes(Track >> Note):
         comment = "Class representing the notes of a track/meter"
         is_a = [hasMusicalFeature]
 
@@ -356,8 +360,14 @@ with onto:
 
 
     # INTERVALS
+
+    class Interval(Melody):
+        comment = "Class representing a musical interval"
+        namespace = mto
+
     class Intervals(Melody):
         comment = "Class representing the intervals in a Melody"
+        equivalent_to = [Interval]
 
 
     class IntervalCount(Intervals):
@@ -387,21 +397,33 @@ with onto:
         comment = "Class representing Consonant Intervals"
 
 
+    class PerfectUnisonInterval(ConsonantIntervals):
+        namespace = mto
+        comment = "Class representing Perfect Unison Interval"
+
     class UnisonInterval(ConsonantIntervals):
         comment = "Subclass representing the Unison Interval"
         hasIntervalsRatio = ["1:1"]
         triggers = [LowArousal, PositiveValence]
+        equivalent_to = [PerfectUnisonInterval]
+
+
+    class PerfectOctaveInterval(ConsonantIntervals):
+        namespace = mto
+        comment = "Class representing Perfect Octave Interval"
 
 
     class OctaveInterval(ConsonantIntervals):
         comment = "Subclass representing the Octave Interval"
         hasIntervalsRatio = ["2:1"]
         triggers = [PositiveValence]
+        equivalent_to = [PerfectOctaveInterval]
 
 
     class PerfectFifthInterval(ConsonantIntervals):
         comment = "Subclass representing the Perfect 5th Interval"
         hasIntervalsRatio = ["3:2"]
+        namespace = mto
         triggers = [VeryPositiveValence]
 
 
@@ -419,24 +441,29 @@ with onto:
         comment = "Subclass representing the Major 3rd Interval"
         hasIntervalsRatio = ["5:4"]
         triggers = [MediumPositiveValence, MediumArousal]
+        namespace = mto
 
 
     class MajorSixthInterval(IntermediateIntervals):
         comment = "Subclass representing the Major 6th Interval"
         hasIntervalsRatio = ["5:3"]
-        triggers = [MediumPositiveValence, HighArousal]  # as a passing note emotionally neutral
+        triggers = [MediumPositiveValence, HighArousal] 
+        namespace = mto
+
 
 
     class MinorThirdInterval(IntermediateIntervals):
         comment = "Subclass representing the Minor 3rd Interval"
         hasIntervalsRatio = ["6:5"]
         triggers = [LowNegativeValence, MediumArousal]
+        namespace = mto
 
 
     class MinorSixthInterval(IntermediateIntervals):
         comment = "Subclass representing the Minor 6th Interval"
         hasIntervalsRatio = ["8:5"]
         triggers = [LowNegativeValence, HighArousal]
+        namespace = mto
 
 
     class DissonantIntervals(Intervals):
@@ -446,29 +473,33 @@ with onto:
         comment = "Subclass representing the Augmented Fourth Interval"
         hasIntervalsRatio = [""]
         triggers = [MediumArousal, LowNegativeValence]
+        namespace = mto
 
     class MinorSeventhInterval(DissonantIntervals):
         comment = "Subclass representing the Minor 7th Interval"
         hasIntervalsRatio = ["7:4"]
-        triggers = [VeryNegativeValence, HighArousal]  # if in major context neutral
+        triggers = [VeryNegativeValence, HighArousal]
+        namespace = mto
 
 
     class MajorSecondInterval(DissonantIntervals):
         comment = "Subclass representing the Major 2nd Interval"
         hasIntervalsRatio = ["9:8"]
-        triggers = [VeryNegativeValence]  # if whole note, not a passing note: if it is in majorMode: neutral
+        triggers = [VeryNegativeValence]
+        namespace = mto
 
 
     class MajorSeventhInterval(DissonantIntervals):
         comment = "Subclass representing the Major 7th Interval"
         hasIntervalsRatio = ["15:8"]
         triggers = [VeryNegativeValence, MediumArousal]  # as a passing note emotionally neutral
-
+        namespace = mto
 
     class MinorSecondInterval(DissonantIntervals):
         comment = "Subclass representing the Minor 2nd Interval"
         hasIntervalsRatio = ["16:15"]
         triggers = [VeryNegativeValence, HighArousal]
+        namespace = mto
 
 
     class MelodyRepetition(Melody):
@@ -773,11 +804,15 @@ with onto:
     class Harmony(MusicalFeature):
         comment = "Class representing Harmony"
 
+    class Chord(Harmony):
+        comment = "Class representing Chord"
+        namespace = mto
+
 
     # CHORD TYPES
     class ChordType(Harmony):
         comment = "Class representing Chord Types"
-
+        equivalent_to = [Chord]
 
     class MajorChord(ChordType):
         comment = "Subclass representing Major Chord: Happiness, Cheerfulness, satisfaction"
@@ -971,6 +1006,6 @@ with onto:
 
     onto.save("MusicEmotionsOntology.owl", 'rdfxml')
     create_instances()
-    create_triggers_table()
+    #create_triggers_table()
     
 
